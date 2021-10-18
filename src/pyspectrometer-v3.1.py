@@ -73,6 +73,7 @@ class App:
 		self.window.geometry("660x570")
 		self.window.resizable (width = False, height = False)
 		self.window.title(window_title)
+		self.window.attributes('-fullscreen', True)
 		self.video_source = video_source
 		self.def_font = tkinter.font.nametofont("TkDefaultFont")
 		self.def_font.config(size=9)
@@ -102,6 +103,9 @@ class App:
 			self.txt1.delete(0,tkinter.END)
 			self.txt2.delete(0,tkinter.END)
 			self.calbutton.configure(text="Calibrate",fg="yellow", bg="red", activebackground='red')
+
+		def quit():
+			self.window.destroy()
 
 		def peakwidth(event):
 			setattr(self.vid,'mindist',event) #set object value when peakwidth slider moved.
@@ -173,6 +177,9 @@ class App:
 		#calibrate button
 		self.calbutton = tkinter.Button(self.control_frame ,text="Calibrate",width=6,fg="yellow",bg="red", activebackground='red', command=self.calibrate)
 		self.calbutton.grid(row=4,column=0)
+		#quit button
+		self.quitbutton = tkinter.Button(self.control_frame ,text="Quit", command=quit)
+		self.quitbutton.grid(row=4,column=1)
 		#clear button
 		self.clrbutton = tkinter.Button(self.control_frame ,text="Clear", command=clear_points)
 		self.clrbutton.grid(row=4,column=2)
