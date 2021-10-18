@@ -70,7 +70,7 @@ class App:
 	def __init__(self, args, window, window_title, video_source=0):
 		self.window = window
 		
-		self.window.geometry("660x570")
+		self.window.geometry("800x480")
 		self.window.resizable (width = False, height = False)
 		self.window.title(window_title)
 		self.window.attributes('-fullscreen', True)
@@ -143,16 +143,16 @@ class App:
 
 
 		# Create frames
-		self.top_frame = tkinter.Frame(window, width=640, height=240)
+		self.top_frame = tkinter.Frame(window, width=740, height=240)
 		self.top_frame.grid(row=0, column=0, padx=10, pady=5)
-		self.bottom_frame = tkinter.Frame(window, width=640, height=255)
+		self.bottom_frame = tkinter.Frame(window, width=740, height=255)
 		self.bottom_frame.grid(row=1, column=0, padx=10, pady=5)
 
 		#put elements in the frames
 		#control frame within frame
 		self.control_frame = tkinter.Frame(self.top_frame, width=324)
 		self.control_frame.grid(row=0, column=0, padx=0, pady=0)
-		self.decoration = tkinter.Canvas(self.control_frame, width = 300, height = 146,borderwidth=2,relief="raised")
+		self.decoration = tkinter.Canvas(self.control_frame, width = 300, height = 70,borderwidth=2,relief="raised")
 		self.decoration.grid(row=0, column=0, columnspan=3, padx=0, pady=0)
 
 		#control panel items:
@@ -194,7 +194,7 @@ class App:
 
 		# Create a canvas that can fit the above video source size
 		#weird, we have to sub 3 pixels to have it fit?
-		self.canvas0 = tkinter.Canvas(self.top_frame, width = 317, height = 238,borderwidth=2,relief="sunken")
+		self.canvas0 = tkinter.Canvas(self.top_frame, width = 317, height = 159,borderwidth=2,relief="sunken")
 		self.canvas0.grid(row=0, column=2, padx=(10,0))
 
 		#botttom canvas
@@ -321,8 +321,8 @@ class MyVideoCapture:
 			ret, frame = self.vid.read()
 			if ret:
 				# Return a boolean success flag and the current frame converted to BGR
-				frame = cv2.resize(frame, (320, 240)) #resize the live image
-				cv2.line(frame,(0,120),(320,120),(255,255,255),1)
+				frame = cv2.resize(frame, (320, 162)) #resize the live image
+				cv2.line(frame,(0,81),(320,81),(255,255,255),1)
 				return (ret, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
 			else:
 				return (ret, None)
